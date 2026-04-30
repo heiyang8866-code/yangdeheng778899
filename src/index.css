@@ -1,0 +1,91 @@
+@import "tailwindcss";
+
+@layer utilities {
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.4);
+  }
+}
+@plugin "@tailwindcss/typography";
+
+@theme {
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+@layer utilities {
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 5px;
+  }
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background: #e5e5e5;
+    border-radius: 3px;
+  }
+  
+  @keyframes text-glow {
+    0% {
+      text-shadow: 0 0 4px rgba(234, 179, 8, 0.3), 0 0 8px rgba(234, 179, 8, 0.1);
+    }
+    100% {
+      text-shadow: 0 0 8px rgba(234, 179, 8, 0.8), 0 0 16px rgba(234, 179, 8, 0.5), 0 0 24px rgba(234, 179, 8, 0.3);
+    }
+  }
+
+  @keyframes border-breathe {
+    0% {
+      box-shadow: inset 0 0 0 1px transparent, 0 0 0 transparent;
+    }
+    50% {
+      box-shadow: inset 0 0 0 2px rgba(245, 158, 11, 0.9), 0 0 12px rgba(245, 158, 11, 0.7);
+    }
+    100% {
+      box-shadow: inset 0 0 0 1px transparent, 0 0 0 transparent;
+    }
+  }
+
+  .animate-text-glow {
+    animation: text-glow 2s ease-in-out infinite alternate;
+  }
+  
+  .animate-border-breathe {
+    animation: border-breathe 3s ease-in-out infinite;
+  }
+}
+
+/* React Flow Handle Optimization */
+.react-flow__handle {
+  width: 32px !important;
+  height: 32px !important;
+  background: transparent !important;
+  border: none !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: crosshair !important;
+  z-index: 100 !important;
+  pointer-events: all !important;
+}
+
+.react-flow__handle::after {
+  display: none; /* We use custom circles in the component */
+}
+
+.react-flow__handle-top { top: -10px !important; }
+.react-flow__handle-bottom { bottom: -10px !important; }
+.react-flow__handle-left { left: -10px !important; }
+.react-flow__handle-right { right: -10px !important; }
+
+/* Edge visibility fix - Ensure edges are above some content if needed */
+.react-flow__edge {
+  z-index: 60 !important;
+}
